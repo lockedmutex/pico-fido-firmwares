@@ -16,7 +16,7 @@
           (lib.splitString "\n" (lib.trim (builtins.readFile ./allSupportedBoards.txt)));
         argMatrix = lib.cartesianProduct {
           picoBoard = allSupportedBoards;
-          vidpid = [ "NitroHSM" "NitroFIDO2" "NitroStart" "NitroPro" "Nitro3" "Yubikey5" "YubikeyNeo" "YubiHSM" "Gnuk" "GnuPG" null ];
+          vidpid = [ null ];
         };
         allFirmwareDrvs = map (args: pkgs.callPackage ./default.nix { inherit (args) picoBoard vidpid; }) argMatrix;      
       in
